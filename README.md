@@ -1,8 +1,8 @@
 
 # AD5761_Micropython - AD5761 DAC Control on MicroPython
 
-This project provides a full implementation for controlling **AD5761** Digital-to-Analog Converter (DAC) using **MicroPython**. All testing is done on a **Raspberry Pi Pico** with RP2040. You might want to add timing interval between sync pulses and read/write operations if you encounter random bit in return values.
-Datasheet Reference: [AD5761 Datasheet](ad5761_5721.pdf)
+This project provides a full implementation for controlling the **AD5761** Digital-to-Analog Converter on **MicroPython**. All testing is done on a **Raspberry Pi Pico** with RP2040. You might want to add timing interval between sync pulses and read/write operations if you encounter random bit in return values.
+Datasheet Reference: [AD5761 Datasheet](./ad5761_5721.pdf)
 
 ## Features
 
@@ -207,3 +207,7 @@ time.sleep(1)
 # Perform a software data reset
 ad5761.software_data_reset()
 ```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
