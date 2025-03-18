@@ -36,6 +36,24 @@ Connect the Raspberry Pi Pico to the AD5761 DAC using the following GPIO pins:
 
 ## Usage
 
+First make sure Rasp pi is configured. 
+
+first, make sure python is downloaded and all packages are updated. in terminal run:
+
+sudo apt update
+sudo apt upgrade 
+
+then 
+
+sudo apt install python3
+sudo apt install python3-pip
+
+sudo apt install python3-rpi.gpio
+sudo apt install python3-spidev
+
+the following will also allow you to interact with git:
+sudo apt-get install git build-essential python-dev
+
 Below is an overview of its key methods:
 
 ### Initialization
