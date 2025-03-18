@@ -1,6 +1,8 @@
 """
 AD5761 DAC Controller Class for MicroPython - eventually some modifications for LTC1257 control on raspberry pi 4
 Datesheet reference: https://www.analog.com/media/en/technical-documentation/data-sheets/1257fc.pdf
+
+NB: there are probably a number of functions here not useful for the LTC1257
 -----------------------------------------------------------------
 This class provides a full implementation for controlling the AD5761 Digital-to-Analog Converter (DAC)
 via SPI on a Raspberry Pi Pico.
@@ -31,9 +33,9 @@ from machine import SPI, Pin
 import time
 
 
-class AD5761:
+class LTC1257:
     """
-    AD5761: A class to control the AD5761 DAC through SPI on a Raspberry Pi Pico.
+    LTC1257: A class to control the LTC1257 DAC through SPI on a Raspberry Pi 4.
     """
 
     # Command First 4 Bits, X means don't care, always set to 0000.
@@ -366,53 +368,53 @@ class AD5761:
 
 # Usage
 def main() -> None:
-    ad5761 = AD5761(
+    ltc1257 = LTC1257(
         spi_id=0, sclk_pin=6, sdi_pin=7, sdo_pin=4, sync_pin=5, alert_pin=12, debug=True
     )
-    ad5761.reset()
+    ltc1257.reset()
     time.sleep(1)
 
     # Configure the DAC control register with the correct command
     # full scale, overrange disabled, straight binary, thermal shutdown enabled, zero scale power-up, 0V to 10V range
-    ad5761.write_control_register(
-        cv=ad5761.CV_FULL_SCALE,
-        ovr=ad5761.OVR_DISABLED,
-        b2c=ad5761.B2C_BINARY,
-        ets=ad5761.ETS_POWER_DOWN,
-        pv=ad5761.PV_ZERO_SCALE,
-        ra=ad5761.RA_10V_UNIPOLAR,
+    ltc1257.write_control_register(
+        cv=ltc1257.CV_FULL_SCALE,
+        ovr=ltc1257.OVR_DISABLED,
+        b2c=ltc1257.B2C_BINARY,
+        ets=ltc1257.ETS_POWER_DOWN,
+        pv=ltc1257.PV_ZERO_SCALE,
+        ra=ltc1257.RA_10V_UNIPOLAR,
     )
     time.sleep(1)
-    ad5761.read_control_register()
+    ltc1257.read_control_register()
     time.sleep(1)
 
     # enable daisy chain
-    ad5761.set_daisy_chain(enabled=True)
+    ltc1257.set_daisy_chain(enabled=True)
     time.sleep(1)
 
     # Write a 50% value to the DAC using write_update_dac_register
-    ad5761.write_update_dac_register(75)
+    ltc1257.write_update_dac_register(75)
     time.sleep(1)
-    ad5761.read_dac_register()
+    ltc1257.read_dac_register()
 
     # then use the write_input_register to write a 25% value to the input register
-    ad5761.write_input_register(25)
+    ltc1257.write_input_register(25)
     time.sleep(5)
     # read the DAC register to see the value
-    ad5761.read_dac_register()
+    ltc1257.read_dac_register()
     time.sleep(1)
     # update the DAC register from the input register
-    ad5761.update_dac_from_input_register()
+    ltc1257.update_dac_from_input_register()
     time.sleep(1)
     # read the DAC register to see the value
-    ad5761.read_dac_register()
+    ltc1257.read_dac_register()
     time.sleep(1)
 
     # Perform a software data reset
-    ad5761.software_data_reset()
+    ltc1257.software_data_reset()
     time.sleep(1)
     # read the DAC register to see the value
-    ad5761.read_dac_register()
+    ltc1257.read_dac_register()
     time.sleep(1)
 
 
