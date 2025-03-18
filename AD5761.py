@@ -1,5 +1,6 @@
 """
-AD5761 DAC Controller Class for MicroPython
+AD5761 DAC Controller Class for MicroPython - eventually some modifications for LTC1257 control on raspberry pi 4
+Datesheet reference: https://www.analog.com/media/en/technical-documentation/data-sheets/1257fc.pdf
 -----------------------------------------------------------------
 This class provides a full implementation for controlling the AD5761 Digital-to-Analog Converter (DAC)
 via SPI on a Raspberry Pi Pico.
