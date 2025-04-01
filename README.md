@@ -4,7 +4,7 @@
 The original project provides a full implementation for controlling the **AD5761** Digital-to-Analog Converter on **MicroPython**. All testing is done on a **Raspberry Pi Pico** with RP2040. You might want to add timing interval between sync pulses and read/write operations if you encounter random bit in return values.
 Datasheet Reference: [Datasheet](./ad5761_5721.pdf)
 
-now im trying to modify it to work for the LTC1257 with raspberry pi 4
+In this version I trying to modify the repository to work for the LTC1257 with Raspberry pi 4.
 
 ## Features
 
@@ -38,23 +38,28 @@ Connect the Raspberry Pi Pico to the AD5761 DAC using the following GPIO pins:
 
 First make sure Rasp pi is configured. 
 
-first, make sure python is downloaded and all packages are updated. in terminal run:
+Make sure python is downloaded and all packages are updated. in terminal run:
 
+
+```Bash
 sudo apt update
 sudo apt upgrade 
-
-then 
-
+```
+followed by: 
+```Bash
 sudo apt install python3
 sudo apt install python3-pip
-
+```
+```Bash
 sudo apt install python3-rpi.gpio
 sudo apt install python3-spidev
-
+```
 the following will also allow you to interact with git:
+```Bash
 sudo apt-get install git build-essential python-dev
+```
 
-Below is an overview of its key methods:
+Below is an overview of the key methods in this repository:
 
 ### Initialization
 
